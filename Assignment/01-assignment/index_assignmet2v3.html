@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 - Website Building</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        #login-container {
+            width: 460px;
+            margin: 0 auto;
+        }
+
+        form label,
+        form input {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form input {
+            padding: 8px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form div {
+            margin: 16px 0px;
+        }
+
+        .input-wrapper {
+            margin-bottom: 16px;
+        }
+
+        .input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding-right: 30px;
+            /* spațiu pentru iconiță */
+            box-sizing: border-box;
+            height: 30px;
+            font-size: 14px;
+        }
+
+        .icon {
+            position: absolute;
+            right: 8px;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        input.valid {
+            border: 2px solid green;
+        }
+
+        input.invalid {
+            border: 2px solid red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 2px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-container">
+
+        <form>
+            <!-- Username-->
+            <div class="input-wrapper">
+                <label for="username">Username:</label>
+                <div class="input-container">
+                    <input id="username" type="text" />
+                    <span id="user-icon" class="material-icons icon"> </span>
+                </div>
+                <span id="user-error" class="usererror-message"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="input-wrapper">
+                <label for="password">Password:</label>
+                <div class="input-container">
+                    <input id="password" type="password" />
+                    <span id="pass-icon" class="material-icons icon"> </span>
+                </div>
+                <span id="pass-error" class="pssswerror-message"></span>
+            </div>
+
+            <input type="submit" value="Login">
+
+            <!-- Mesaj unic sub formular -->
+
+            <div id="finalMessage" class="finalMessage"></div>
+
+        </form>
+
+    </div>
+    <script>
+        const form = document.getElementById('login-container');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const userError = document.getElementById('user-error');
+        const passError = document.getElementById('pass-error');
+        const userIcon = document.getElementById('user-icon');
+        const passIcon = document.getElementById('pass-icon');
+        document.getElementById('final-message');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+            const errors = [];
+
+
+
+            // Validare username
+            if (username === 'new_user') {
+                usernameInput.classList.add('valid');
+                usernameInput.classList.remove('invalid');
+                userError.textContent = '';
+                userIcon.textContent = 'icon check';
+                userIcon.style.color = 'green';
+            } else {
+                usernameInput.classList.add('invalid');
+                usernameInput.classList.remove('valid');
+                userError.textContent = 'Please enter a valid username';
+                userIcon.textContent = 'close';
+                userIcon.style.color = 'red';
+                //errors.push('Please enter a valid username');
+                valid = false;
+            }
+            // Validare passw
+            if (password === '123456789') {
+                passwordInput.classList.add('valid');
+                passwordInput.classList.remove('invalid');
+                passError.textContent = '';
+                passIcon.textContent = 'icon check';
+                passIcon.style.color = 'green';
+            } else {
+                passwordInput.classList.add('invalid');
+                passwordInput.classList.remove('valid');
+                passError.textContent = '*please, enter a valid password';
+                passIcon.textContent = 'close';
+                passIcon.style.color = 'red';
+                //errors.push('*please, enter a valid password');
+                valid = false;
+            }
+
+
+            // Display message
+            if (valid) {
+                finalMessage.textContent = 'Succes!'
+                finalMessage.classList.remove('error');
+                finalMessage.classList.add('success');
+            } else {
+                finalMessage.textContent = ' ';
+                finalMessage.classList.remove('success');
+                finalMessage.classList.remove('error');
+
+                       
+                           
+            }
+            
+        });
+
+    </script>
+
+</body>
+
+</html>

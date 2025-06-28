@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Formular Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f5f5f5;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input.valid {
+      border-color: green;
+    }
+
+    input.invalid {
+      border-color: red;
+    }
+
+    .icon {
+      position: absolute;
+      right: 10px;
+      top: 38px;
+    }
+
+    .error-msg {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+
+    .success-msg {
+      color: green;
+      font-size: 1em;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form id="loginForm" novalidate>
+    <div class="input-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required>
+      <i class="icon" id="userIcon"></i>
+      <div class="error-msg" id="userError"></div>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <i class="icon" id="passIcon"></i>
+      <div class="error-msg" id="passError"></div>
+    </div>
+
+    <button type="submit">Login</button>
+    <div class="success-msg" id="successMsg"></div>
+  </form>
+
+  <script>
+
+    const Users = ['new_user',''];
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const userError = document.getElementById('userError');
+    const passError = document.getElementById('passError');
+    const userIcon = document.getElementById('userIcon');
+    const passIcon = document.getElementById('passIcon');
+    const successMsg = document.getElementById('successMsg');
+
+    function validateUsername() {
+      const value = usernameInput.value.trim();
+      if (Users.includes(value)) {
+        usernameInput.classList.add('valid');
+        usernameInput.classList.remove('invalid');
+        userIcon.className = 'icon fa-solid fa-check';
+        userError.textContent = '';
+        return true;
+      } else {
+        usernameInput.classList.add('invalid');
+        usernameInput.classList.remove('valid');
+        userIcon.className = 'icon fa-solid fa-xmark';
+        userError.textContent = 'Please enter a valid username!';
+        return false;
+      }
+    }
+
+    function validatePassword() {
+      const value = passwordInput.value;
+      const isValid = value.length >= 8 &&
+        /[A-Z]/.test(value) &&
+        /\d/.test(value) &&
+        /[!@#$%^&*]/.test(value);
+      if (isValid) {
+        passwordInput.classList.add('valid');
+        passwordInput.classList.remove('invalid');
+        passIcon.className = 'icon fa-solid fa-check';
+        passError.textContent = '';
+        return true;
+      } else {
+        passwordInput.classList.add('invalid');
+        passwordInput.classList.remove('valid');
+        passIcon.className = 'icon fa-solid fa-xmark';
+        passError.textContent = '* Please enter a valid password';
+        return false;
+      }
+    }
+
+    usernameInput.addEventListener('input', validateUsername);
+    passwordInput.addEventListener('input', validatePassword);
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const userOk = validateUsername();
+      const passOk = validatePassword();
+
+      if (userOk && passOk) {
+        successMsg.textContent = 'Login realizat cu succes!';
+      } else {
+        successMsg.textContent = '';
+      }
+    });
+
+  
+  </script>
+
+</body>
+
+</html>

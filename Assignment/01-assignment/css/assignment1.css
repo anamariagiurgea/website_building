@@ -1,0 +1,24 @@
+body {
+    margin: 5px;
+    border: 15px;
+}
+
+
+.hero {
+    background-color: rgb(33, 199, 33);
+    font-size: 18px;
+    margin-left: 20px;
+
+}
+.pics2{
+  
+    padding: 20px;
+}
+
+h5 {
+    color: black;
+}
+
+.posted {
+    color: rgb(48, 47, 47);
+}
