@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "ejs-loader": "^0.5.0",
+    "html": "^1.0.0",
+    "webpack": "^5.100.1",
+    "webpack-cli": "^6.0.1"
+  }
+}
