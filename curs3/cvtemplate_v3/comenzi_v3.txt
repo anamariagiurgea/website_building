@@ -1,0 +1,42 @@
+Atentie la variabilele folosite in styles.scss
+Recomand sa folositi propriile variabile si coduri de culori si propriul stil CSS
+astfel incat se personalizati cat mai mult acest proiect.
+
+
+
+Pas1.
+Integram jQuery in proiect
+Reamintesc ca am instalat deja jQuery: npm install jquery --save
+
+In fisierul /src/js/main.js, daca folosim jQuery adaugam aceste linii:
+import $ from 'jquery';
+// create global $ and jQuery variables
+global.$ = global.jQuery = $;
+
+
+//https://www.npmjs.com/package/jquery
+//https://stackoverflow.com/questions/75906727/how-to-use-jquery-plugin-flexslider-in-webpack-5-with-react-ssr
+
+Pas2.
+
+touch src/js/skill.js
+
+in fisierul src/index.js am adaugat la final
+import "./js/skill.js";
+
+Pas3.
+Adaugam o noua sectiune experienta/studii
+https://bootstrapbrain.com/tutorial/bootstrap-timeline-example/#preview
+
+touch src/views/experience.html src/scss/_experience.scss
+
+Pas4.
+Actualizam template-ul src/index.html
+
+Pas5.
+Actualizam si fiserul de configurare webpack
+webpack.config.js
+
+Pas6.
+Actualizam  /src/scss/styles.scss
+
